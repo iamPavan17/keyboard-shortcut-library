@@ -1,9 +1,18 @@
-.container {
+section {
   font-family: Courier;
+}
+
+.container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: 1fr;
-  height: 750px;
+  height: 710px;
+}
+
+.heading {
+  text-align: center;
+  margin-top: 0;
+  text-decoration: underline;
 }
 
 .component-wrapper {

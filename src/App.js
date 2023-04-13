@@ -28,21 +28,24 @@ function App({ listener }) {
   }, [listener]);
 
   return (
-    <div className="container">
-      {keyboardCombos.map((keyboardCombo) => (
-        <ComponentBlock
-          key={keyboardCombo.id}
-          keyboardComboData={keyboardCombo}
-          listener={listener}
+    <section>
+      <h2 className="heading">Keyboard Shortcut Library</h2>
+      <div className="container">
+        {keyboardCombos.map((keyboardCombo) => (
+          <ComponentBlock
+            key={keyboardCombo.id}
+            keyboardComboData={keyboardCombo}
+            listener={listener}
+            handleKeyboardCombo={handleKeyboardCombo}
+          />
+        ))}
+
+        <KeyboardShortcutLegend
+          keyboardCombos={keyboardCombos}
           handleKeyboardCombo={handleKeyboardCombo}
         />
-      ))}
-
-      <KeyboardShortcutLegend
-        keyboardCombos={keyboardCombos}
-        handleKeyboardCombo={handleKeyboardCombo}
-      />
-    </div>
+      </div>
+    </section>
   );
 }
 
