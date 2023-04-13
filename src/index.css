@@ -1,11 +1,20 @@
 .container {
+  font-family: Courier;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 90vh;
+  grid-auto-rows: 1fr;
+  height: 700px;
 }
 
 .component-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
+}
+
+.keyboard-legend {
+  color: black;
+  padding: 12px;
+  flex-direction: column;
 }
