@@ -14,7 +14,9 @@ export default function KeyboardShortcutLegend({
           <button onClick={() => handleKeyboardCombo(item.id, "bindToggle")}>
             {item.isActive ? "un" : ""} bind
           </button>
-          <button>reset</button>
+          <button onClick={() => handleKeyboardCombo(item.id, "newCombo")}>
+            new combo
+          </button>
         </div>
       ))}
     </div>
