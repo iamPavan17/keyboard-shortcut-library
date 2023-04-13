@@ -26,7 +26,7 @@ const keyboardCombosUpdater = (keyboardCombos, id, type, listener) => {
     listener.unregister_combo(value);
     keyboardCombosClone[selectedComboIndex].keyboardCombo = `${
       value.split(" ")[0]
-    } ${String.fromCharCode(getRandomArbitrary())}}`;
+    } ${String.fromCharCode(getRandomArbitrary())}`;
   }
 
   return keyboardCombosClone;
