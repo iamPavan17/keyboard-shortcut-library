@@ -9,6 +9,7 @@ export default function KeyboardShortcutLegend({
       {keyboardCombos.map((item) => (
         <div key={item.id} className="keyboard-combo-list">
           <p className={!item.isActive ? "unbind-text" : ""}>
+            {item.isActive ? "✅" : "❎"}{" "}
             {item.keyboardCombo.split(" ").join("-")}({item.description})
           </p>
           <button onClick={() => handleKeyboardCombo(item.id, "bindToggle")}>
