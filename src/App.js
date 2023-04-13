@@ -1,46 +1,29 @@
 import { useState, useEffect } from "react";
-import randomColor from "randomcolor";
 
+import { keyboardCombosUpdater } from "./helpers";
+import { defaultKeyboardCombos } from "./constants";
 import ComponentBlock from "./components/ComponentBlock";
 import KeyboardShortcutLegend from "./components/KeyboardShortcutLegend";
 
 function App({ listener }) {
   const [keyboardCombos, setKeyboardCombos] = useState([
-    {
-      id: 1,
-      componentName: "Component A",
-      keyboardCombo: "shift a",
-      color: randomColor(),
-      description: "Turns to some color for Component A",
-    },
-    {
-      id: 2,
-      componentName: "Component B",
-      keyboardCombo: "shift s",
-      color: randomColor(),
-      description: "Turns to some color for Component B",
-    },
-    {
-      id: 3,
-      componentName: "Component C",
-      keyboardCombo: "shift d",
-      color: randomColor(),
-      description: "Turns to some color for Component C",
-    },
+    ...defaultKeyboardCombos,
   ]);
 
-  const handleKeyboardCombos = (id) => {
-    const keyboardCombosClone = [...keyboardCombos];
-    const selectedComboIndex = keyboardCombos.findIndex(
-      (combo) => combo.id === id
+  const handleKeyboardCombo = (id, type) => {
+    /** This handler does the below,
+     * Changes the color based on the keyboard combo.
+     * Unbind the keyboard combo.
+     * Create a new keyboard combo.
+     */
+    setKeyboardCombos(
+      keyboardCombosUpdater(keyboardCombos, id, type, listener)
     );
-    keyboardCombosClone[selectedComboIndex].color = randomColor();
-    setKeyboardCombos(keyboardCombosClone);
   };
 
   useEffect(() => {
     return () => {
-      listener.reset(); // Unregister all available combos
+      listener.reset(); // Unregister all available combos on UNMOUNT
     };
   }, [listener]);
 
@@ -51,11 +34,14 @@ function App({ listener }) {
           key={keyboardCombo.id}
           keyboardComboData={keyboardCombo}
           listener={listener}
-          handleKeyboardCombos={handleKeyboardCombos}
+          handleKeyboardCombo={handleKeyboardCombo}
         />
       ))}
 
-      <KeyboardShortcutLegend shortcutCombos={keyboardCombos} />
+      <KeyboardShortcutLegend
+        keyboardCombos={keyboardCombos}
+        handleKeyboardCombo={handleKeyboardCombo}
+      />
     </div>
   );
 }

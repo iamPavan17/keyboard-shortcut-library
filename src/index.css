@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: 1fr;
-  height: 700px;
+  height: 750px;
 }
 
 .component-wrapper {
@@ -17,4 +17,15 @@
   color: black;
   padding: 12px;
   flex-direction: column;
+}
+
+.keyboard-combo-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.keyboard-combo-list .unbind-text {
+  color: lightgray;
+  text-decoration: line-through;
 }

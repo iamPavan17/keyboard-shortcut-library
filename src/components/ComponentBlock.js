@@ -3,13 +3,14 @@ import { useEffect } from "react";
 export default function ComponentBlock({
   listener,
   keyboardComboData,
-  handleKeyboardCombos,
+  handleKeyboardCombo,
 }) {
   useEffect(() => {
-    listener.simple_combo(keyboardComboData.keyboardCombo, function () {
-      handleKeyboardCombos(keyboardComboData.id);
-    });
-  }, [listener, keyboardComboData, handleKeyboardCombos]);
+    if (keyboardComboData.isActive)
+      listener.simple_combo(keyboardComboData.keyboardCombo, function () {
+        handleKeyboardCombo(keyboardComboData.id, "colorChange");
+      });
+  }, [listener, keyboardComboData, handleKeyboardCombo]);
 
   return (
     <div
